@@ -47,6 +47,13 @@ Manifest:
 ```
 CALL_METHOD
   Address("{dev_account_address}")
+  "create_proof_of_amount"
+  Address("{badge_with_mint_component_owner_role}")
+  Decimal("1")
+;
+
+CALL_METHOD
+  Address("{dev_account_address}")
   "withdraw"
   Address("{badge_with_airdrop_permission}")
   Decimal("1")
@@ -55,13 +62,6 @@ CALL_METHOD
 TAKE_ALL_FROM_WORKTOP
   Address("{badge_with_airdrop_permission}")
   Bucket("badge")
-;
-
-CALL_METHOD
-  Address("{dev_account_address}")
-  "create_proof_of_amount"
-  Address("resource_tdx_2_1t4mpfndnsszcfjw0c6kmdzxwzrnr64kcptmvgcx6l3ad6ul5s7c8pf")
-  Decimal("1")
 ;
 
 CALL_METHOD
