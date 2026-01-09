@@ -22,21 +22,9 @@ mod radix_rewards_nft_component {
     }
 
     impl RadixRewardsNft {
-        pub fn instantiate(nft_icon_url: Url, nft_key_image_url: Url, nft_dapp_definition: GlobalAddress, locker: Global<AccountLocker>) -> (Global<RadixRewardsNft>, FungibleBucket) {
+        pub fn instantiate(nft_icon_url: Url, nft_key_image_url: Url, nft_dapp_definition: GlobalAddress, locker: Global<AccountLocker>, controller_badge_address: ResourceAddress) -> Global<RadixRewardsNft> {
             let (address_reservation, component_address) =
                 Runtime::allocate_component_address(RadixRewardsNft::blueprint_id());
-
-            let controller_badges: FungibleBucket = ResourceBuilder::new_fungible(OwnerRole::None)
-            .divisibility(DIVISIBILITY_NONE)
-            .metadata(metadata! (
-                init {
-                    "name" => "Radix Rewards NFT Owner Badge", locked;
-                    "symbol" => "ownRRNFT", locked;
-                }
-            ))
-            .mint_initial_supply(5);
-
-            let controller_badge_address = controller_badges.resource_address();
 
             let controller_badge_access_rule = rule!(
                 require(controller_badge_address) || require(global_caller(component_address))
@@ -60,7 +48,7 @@ mod radix_rewards_nft_component {
                 ))
                 .create_with_no_initial_supply();
 
-            let radix_rewards_nft = Self {
+            Self {
                 nft_manager,
                 nft_count: 0,
                 nft_key_image_url,
@@ -69,9 +57,7 @@ mod radix_rewards_nft_component {
             .instantiate()
             .prepare_to_globalize(controller_badge_owner_role)
             .with_address(address_reservation)
-            .globalize();
-
-            (radix_rewards_nft, controller_badges)
+            .globalize()
         }
 
         pub fn mint_and_send_nfts(
