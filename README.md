@@ -1,4 +1,4 @@
-send Radix Reward NFTs, package is live on Stokenet, at: `package_tdx_2_1phcdk4r98k49wus9jfz4n2dhutagmdwr0nsn4l6y796y4syndpk98l`
+send Radix Reward NFTs, package is live on Stokenet, at: `package_tdx_2_1pk47rgdcggz00fh73ft5xfwg6hq9uc4jr9wszuwdahfm629fsdvqnk`
 
 ## Step 1: Instantiate an Account Locker
 The mint and send component needs to use an AccountLocker, you can use an existing one, but if you don't have one you want to use, you can use the AccountLockerWrapper package (example deployed at `package_tdx_2_1pk8hnmyp36uduxk86cjt0w28w76kxdyuz76th89qr6peyjv2yednwr`) to instantiate one.
@@ -36,12 +36,6 @@ CALL_FUNCTION
   Address("{dapp_def_for_nft}")
   Address("{account_locker}")
   Address("{owner_role_badge_address}"}
-;
-
-CALL_METHOD
-  Address("account_tdx_2_12yjctk8r4csusav9c7z9a7j9vahmnnhnht5ym2ffngh9rqyajsgsdd")
-  "deposit_batch"
-  Expression("ENTIRE_WORKTOP")
 ;
 ```
 
