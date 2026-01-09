@@ -3,7 +3,7 @@ send Radix Reward NFTs, package is live on Stokenet, at: `package_tdx_2_1phcdk4r
 ## Step 1: Instantiate an Account Locker
 The mint and send component needs to use an AccountLocker, you can use an existing one, but if you don't have one you want to use, you can use the AccountLockerWrapper package (example deployed at `package_tdx_2_1pk8hnmyp36uduxk86cjt0w28w76kxdyuz76th89qr6peyjv2yednwr`) to instantiate one.
 
-To instantiate one, you need a resource address of a badge you want to assign as the owner of the locker you're instantiated. You will need this badge to interact with any of the admin methods on the locker (airdrop, recover tokens, etc.):
+To instantiate one, you need a resource address of a badge you want to assign as the owner of the locker you're instantiating. You will need this badge to interact with any of the admin methods on the locker (airdrop, recover tokens, etc.):
 
 ```
 CALL_FUNCTION
@@ -14,7 +14,7 @@ CALL_FUNCTION
     Enum<0u8>(
       Enum<0u8>(
         Enum<1u8>(
-          Address("resource_tdx_2_1t4mpfndnsszcfjw0c6kmdzxwzrnr64kcptmvgcx6l3ad6ul5s7c8pf") # owner badge address
+          Address("{resource_address_of_lockers_owner_badge}") # owner badge address
         )
       )
     )
